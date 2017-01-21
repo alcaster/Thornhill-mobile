@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page One</ion-title>
+    <ion-title>Index</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,9 +11,10 @@
   <h3>Welcome to the Thornhill system</h3>
 
   <!--<p>-->
-    <!--If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.-->
+  <!--If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.-->
   <!--</p>-->
   <ion-img width="400" height="160" src="img/123.gif"></ion-img>
-
-  <button class="center" ion-button secondary menuToggle>Login</button>
+  <button class="center" ion-button secondary (click)="openModal()">
+    Login
+  </button>
 </ion-content>

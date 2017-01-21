@@ -1,14 +1,15 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { Index } from '../pages/Index/index';
-import { Temperature } from '../pages/Temperatures/temperatures';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
+import {Index, ModalContentLogin} from '../pages/Index/index';
+import {Temperature} from '../pages/Temperatures/temperatures';
 import {TemperaturesJson} from "../pages/providers/temperatures-json";
 @NgModule({
   declarations: [
     MyApp,
     Index,
-    Temperature
+    Temperature,
+    ModalContentLogin,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -17,8 +18,10 @@ import {TemperaturesJson} from "../pages/providers/temperatures-json";
   entryComponents: [
     MyApp,
     Index,
-    Temperature
+    Temperature,
+    ModalContentLogin,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},TemperaturesJson]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TemperaturesJson]
 })
-export class AppModule {}
+export class AppModule {
+}
