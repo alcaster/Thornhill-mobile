@@ -11,6 +11,6 @@ export class TemperaturesJson {
   constructor(public http: Http) { }
   load(): Observable<TemperatureRecord[]> {
     return this.http.get(this.thornhillApiUrl+'/temperature'+this.jsonSufix)
-      .map(res => <TemperatureRecord[]>res.json());
+      .map(res => <TemperatureRecord[]>res.json()['results']);
   }
 }

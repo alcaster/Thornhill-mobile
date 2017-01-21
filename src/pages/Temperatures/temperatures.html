@@ -5,10 +5,12 @@
     </button>
     <ion-title>Page Two</ion-title>
   </ion-navbar>
+  <script src="node_modules/chart.js/Chart.min.js"></script>
+  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 </ion-header>
 
 <ion-content>
-  Here will be all temperatures.
+  <p>Here will be all temperatures.</p>
   <ion-list>
     <button ion-item *ngFor="let temperature of temperatures" (click)="itemTapped($event, item)">
       {{temperature.temperature}}
