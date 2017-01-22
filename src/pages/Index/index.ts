@@ -1,15 +1,21 @@
-import {Component} from '@angular/core';
-
-import {NavController, ModalController, ViewController, NavParams, Platform} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController, ModalController, ViewController, NavParams, Platform} from "ionic-angular";
 import {User} from "../providers/user";
+import {Storage} from "@ionic/storage";
+
 
 @Component({
   selector: 'page-page1',
   templateUrl: 'index.html'
 })
 export class Index {
+  logged;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private storage: Storage) {
+    storage.get('login-data').then((val) => {
+      console.log('Login data', val);
+      this.logged = val != null;
+    })
   }
 
   openModal() {
@@ -59,7 +65,7 @@ export class Index {
 
 export class ModalContentLogin {
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private user: User) {
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private user: User, private storage: Storage) {
 
   }
 
@@ -69,7 +75,10 @@ export class ModalContentLogin {
 
     this.user.login(this.account).subscribe(data => {
       console.log(data);
+      this.storage.set('login-data', data);
     }, error => {
+      //Clear local storage
+      this.storage.set('login-data', null);
       console.log(JSON.stringify(error.json()));
     });
   }

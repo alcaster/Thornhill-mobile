@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
-
-import {NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController, NavParams} from "ionic-angular";
 import {TemperaturesJson} from "../providers/temperatures-json";
 import {TemperatureRecord} from "../../models/temperature";
+import {Storage} from "@ionic/storage";
+
 
 @Component({
   selector: 'page-page2',
@@ -11,7 +12,7 @@ import {TemperatureRecord} from "../../models/temperature";
 export class Temperature {
   temperatures: TemperatureRecord[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private temperatureApi: TemperaturesJson) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private temperatureApi: TemperaturesJson, private storage: Storage) {
     temperatureApi.load().subscribe(temperatures => {
       this.temperatures = temperatures;
     });
