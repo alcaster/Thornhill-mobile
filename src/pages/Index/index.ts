@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 import {NavController, ModalController, ViewController, NavParams, Platform} from 'ionic-angular';
-import {Http, Headers} from "@angular/http";
+import {User} from "../providers/user";
 
 @Component({
   selector: 'page-page1',
@@ -40,11 +40,11 @@ export class Index {
       <form (ngSubmit)="logForm()">
         <ion-item>
           <ion-label color="primary" floating>Login</ion-label>
-          <ion-textarea name="login" [(ngModel)]="account.login"></ion-textarea>
+          <ion-input name="login" [(ngModel)]="account.login"></ion-input>
         </ion-item>
          <ion-item>
           <ion-label color="primary" floating>Password</ion-label>
-          <ion-textarea name="password" [(ngModel)]="account.password"></ion-textarea>
+          <ion-input name="password" type="password" [(ngModel)]="account.password"></ion-input>
         </ion-item>
         <ion-item>
           <button class="center" ion-button type="submit" block (click)="dismiss()">
@@ -59,27 +59,19 @@ export class Index {
 
 export class ModalContentLogin {
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: Http) {
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private user: User) {
 
   }
 
   account = {};
 
   logForm() {
-    let loginUrl='http://127.0.0.1:8000/api/api-token-auth/';
-    let body = 'username='+this.account['login']+'&password='+this.account['password'];
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    this.http
-      .post(loginUrl,
-        body, {
-          headers: headers
-        })
-      .subscribe(data => {
-        console.log(data)
-      }, error => {
-        console.log(JSON.stringify(error.json()));
-      });
+
+    this.user.login(this.account).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(JSON.stringify(error.json()));
+    });
   }
 
   dismiss() {

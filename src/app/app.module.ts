@@ -4,6 +4,7 @@ import {MyApp} from './app.component';
 import {Index, ModalContentLogin} from '../pages/Index/index';
 import {Temperature} from '../pages/Temperatures/temperatures';
 import {TemperaturesJson} from "../pages/providers/temperatures-json";
+import {User} from "../pages/providers/user";
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +22,7 @@ import {TemperaturesJson} from "../pages/providers/temperatures-json";
     Temperature,
     ModalContentLogin,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TemperaturesJson]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, TemperaturesJson, User]
 })
 export class AppModule {
 }
