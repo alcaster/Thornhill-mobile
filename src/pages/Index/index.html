@@ -10,17 +10,15 @@
 <ion-content padding>
   <h3>Welcome to the Thornhill system</h3>
 
-  <!--<p>-->
-  <!--If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.-->
-  <!--</p>-->
-  <ion-img width="400" height="160" src="img/123.gif"></ion-img>
+  <ion-img class="banner" src="img/123.gif"></ion-img>
   <ng-container *ngIf="logged">
     <h2>Thank you for logging</h2>
+    <button class="center login" ion-button secondary (click)="logout()">Logout</button>
   </ng-container>
   <ng-container *ngIf!="logged">
     <h2>Please log in</h2>
+    <button class="center logout" ion-button secondary (click)="openModal()">
+      Login
+    </button>
   </ng-container>
-  <button class="center" ion-button secondary (click)="openModal()">
-    Login
-  </button>
 </ion-content>

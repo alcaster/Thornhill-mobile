@@ -6,19 +6,27 @@ import {Storage} from "@ionic/storage";
 
 
 @Component({
-  selector: 'page-page2',
+  selector: 'temperature',
   templateUrl: 'temperatures.html'
 })
 export class Temperature {
   temperatures: TemperatureRecord[];
+  current: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private temperatureApi: TemperaturesJson, private storage: Storage) {
     temperatureApi.load().subscribe(temperatures => {
       this.temperatures = temperatures;
     });
+    this.update();
+  }
+
+  update() {
+    this.temperatureApi.getCurrentTemp().subscribe(temperature => {
+      this.current = temperature['_body'];
+    });
   }
 
   itemTapped(event, item) {
-
+    this.update();
   }
 }

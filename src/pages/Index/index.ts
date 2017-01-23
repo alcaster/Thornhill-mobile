@@ -5,7 +5,7 @@ import {Storage} from "@ionic/storage";
 
 
 @Component({
-  selector: 'page-page1',
+  selector: 'index',
   templateUrl: 'index.html'
 })
 export class Index {
@@ -21,6 +21,11 @@ export class Index {
   openModal() {
     let modal = this.modalCtrl.create(ModalContentLogin);
     modal.present();
+  }
+
+  logout() {
+    this.storage.set('login-data', null);
+    window.location.reload();
   }
 }
 @Component({
@@ -85,5 +90,6 @@ export class ModalContentLogin {
 
   dismiss() {
     this.viewCtrl.dismiss();
+    window.location.reload();
   }
 }
